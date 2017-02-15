@@ -1,6 +1,8 @@
 from selenium import webdriver
 from fixture.session import SessionHelper
 from fixture.project import ProjectHelper
+import string
+import random
 
 class Application():
     def __init__(self, browser, baseUrl):
@@ -37,7 +39,9 @@ class Application():
             wd.find_element_by_name(field_name).clear()
             wd.find_element_by_name(field_name).send_keys(text)
 
-
+    def random_string(self, prefix, maxlen):
+        symbols = string.ascii_letters + string.digits + " " * 10
+        return prefix + "".join([random.choice(symbols) for i in range(random.randrange(maxlen))])
 
     def destroy(self):
         self.wd.quit()
