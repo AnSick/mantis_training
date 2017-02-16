@@ -41,7 +41,7 @@ class ProjectHelper:
             status = "2"
         elif status == "stable":
             status = "3"
-        elif status == "obsolette":
+        elif status == "obsolete":
             status = "4"
         return status
 
@@ -72,7 +72,7 @@ class ProjectHelper:
 
     def delete_project(self, project):
         wd = self.app.wd
-        wd.get(self.app.baseUrl + "manage_proj_edit_page.php?project_id="+project.id)
+        wd.get(self.app.baseUrl + "manage_proj_edit_page.php?project_id="+str(project.id))
         wd.find_element_by_xpath('//*[@id="project-delete-form"]/fieldset/input[3]').click()
         wd.find_element_by_xpath('//*[@id="main-container"]/div[2]/div[2]/div/div/div[2]/form/input[4]').click()
         self.go_to_project_management()
